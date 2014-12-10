@@ -18,8 +18,8 @@ RUN gem install git
 
 # some puppet configurations
 RUN echo '[agent]' >> /etc/puppet/puppet.conf
-RUN echo 'environment=xmlapi_development' >> /etc/puppet/puppet.conf
-RUN echo 'server=f1-v3-puppet-dev1b.infosys.de' >> /etc/puppet/puppet.conf
+RUN echo 'environment=python_logger' >> /etc/puppet/puppet.conf
+RUN echo 'server=192.68.80.150' >> /etc/puppet/puppet.conf
 RUN echo 'masterport=8140' >> /etc/puppet/puppet.conf
 RUN echo 'report=False' >> /etc/puppet/puppet.conf
 RUN echo 'listen=True' >> /etc/puppet/puppet.conf
@@ -35,4 +35,5 @@ RUN echo Europe/Berlin > /etc/timezone && dpkg-reconfigure --frontend noninterac
 
 # -t include --detailrd-exitcodes, which returns 2 on change
 # this breaks the docker build process because exit code is not 0
-RUN /usr/bin/puppet agent --verbose --onetime
+# RUN /usr/bin/puppet agent --verbose --onetime
+

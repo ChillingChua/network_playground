@@ -4,7 +4,7 @@
 
 import atexit
 from multiprocessing import Process
-from lib.writer import LogWriter
+from writer import LogWriter
 
 all_writers = []
 
@@ -18,8 +18,8 @@ def getWriter(log_file, base_string):
     l.start()
     all_writers.append(l)
 
-a = Process(target=getWriter, args=('logs/logfile1.log', 'some process took %s seconds.'))
-b = Process(target=getWriter, args=('logs/logfile2.log', '%s -> thats too long !!'))
+a = Process(target=getWriter, args=('/tmp/logfile1.log', 'some process took %s seconds.'))
+b = Process(target=getWriter, args=('/tmp/logfile2.log', '%s -> thats too long !!'))
 a.start()
 b.start()
 b.join()
