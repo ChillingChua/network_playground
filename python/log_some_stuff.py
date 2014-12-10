@@ -3,6 +3,7 @@
 # module timing log parser
 
 import atexit
+from multiprocessing import Process
 from lib.writer import LogWriter
 
 all_writers = []
@@ -12,10 +13,13 @@ def stop():
     for obj in all_writers:
         obj.stop()
 
-log_writer_1 = LogWriter('logs/logfile1.log', 'some process took %s seconds.')
-log_writer_1.start()
-all_writers.append(log_writer_1)
+def getWriter(log_file, base_string):
+    l = LogWriter(log_file, base_string)
+    l.start()
+    all_writers.append(l)
 
-log_writer_2 = LogWriter('logs/logfile2.log', '%s -> thats too long !!')
-log_writer_2.start()
-all_writers.append(log_writer_2)
+a = Process(target=getWriter, args=('logs/logfile1.log', 'some process took %s seconds.'))
+b = Process(target=getWriter, args=('logs/logfile2.log', '%s -> thats too long !!'))
+a.start()
+b.start()
+b.join()

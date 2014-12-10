@@ -1,6 +1,0 @@
-%(message)s
-%(message)s
-%(message)s
-INFO:LogWriter:Starting ...
-INFO:LogWriter:some process took 7.57192004341 seconds.
-INFO:LogWriter:some process took 10.1164595652 seconds.
