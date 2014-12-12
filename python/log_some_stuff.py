@@ -13,13 +13,14 @@ def stop():
     for obj in all_writers:
         obj.stop()
 
+
 def getWriter(log_file, base_string):
     l = LogWriter(log_file, base_string)
     l.start()
     all_writers.append(l)
 
-a = Process(target=getWriter, args=('/tmp/logfile1.log', 'some process took %s seconds.'))
-b = Process(target=getWriter, args=('/tmp/logfile2.log', '%s -> thats too long !!'))
+a = Process(target=getWriter, args=('/tmp/logfile1.log', '%s - [%s] some process took %s seconds.'))
+b = Process(target=getWriter, args=('/tmp/logfile2.log', '%s - [%s] %s -> thats too long !!'))
 a.start()
 b.start()
 b.join()
